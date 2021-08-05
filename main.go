@@ -163,6 +163,7 @@ func createPost(res http.ResponseWriter, req *http.Request) {
 	}
 
 	req.ParseForm()
+	req.ParseMultipartForm(0)
 
 	// Authorize Request
 	if len(req.FormValue("username")) <= 1 {
