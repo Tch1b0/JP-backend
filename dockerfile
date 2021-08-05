@@ -2,7 +2,11 @@ FROM golang:latest
 
 WORKDIR /app
 
-COPY ./* ./*
+COPY ./main.go ./main.go
+COPY ./go.mod ./go.mod
+COPY ./go.sum ./go.sum
+COPY ./pkg ./pkg
+COPY ./posts ./posts
 
 VOLUME [ "/app/posts" ]
 
