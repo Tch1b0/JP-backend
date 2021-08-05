@@ -2,6 +2,8 @@ FROM golang:latest
 
 WORKDIR /app
 
+COPY ./* ./*
+
 VOLUME [ "/app/posts" ]
 
 RUN go mod download
