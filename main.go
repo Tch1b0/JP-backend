@@ -48,6 +48,9 @@ func main() {
 	// Upload new post
 	router.HandleFunc("/post", createPost)
 
+	// Validate Credentials
+	router.HandleFunc("/verify", verify)
+
 	// Start the Server
 	http.ListenAndServe(fmt.Sprintf(":%d", port), router)
 }
@@ -213,4 +216,20 @@ func deletePost(res http.ResponseWriter, req *http.Request, p pkg.Post) {
 	pkg.WriteJson("./posts/posts.json", posts)
 	res.WriteHeader(200)
 	fmt.Fprint(res, posts)
+}
+
+func verify(res http.ResponseWriter, req *http.Request) {
+	req.ParseMultipartForm(0)
+	if req.FormValue("password") == "" || req.FormValue("username") == "" {
+		fmt.Fprint(res, "No password or username")
+		return
+	}
+
+	if pkg.CheckPassword(req.FormValue("password"), account.Password) && req.FormValue("username") == account.Username{
+		fmt.Fprint(res, "Logged in")
+		return
+	} else {
+		fmt.Fprint(res, "Wrong password or username")
+		return
+	}
 }
