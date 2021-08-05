@@ -2,6 +2,20 @@
 This is the backend for my website.
 Here I upload my posts
 
+## Upload
+Form to upload Project:
+```json
+"username": string,
+"password": string,
+
+"title": string,
+"description": string,
+"long-description": string,
+
+"logo": png/jpg,
+"banner": png/jpg
+```
+
 ## How to deploy 
 ```
 git clone https://github.com/Tch1b0/JP-backend
