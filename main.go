@@ -162,6 +162,8 @@ func createPost(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	req.ParseForm()
+
 	// Authorize Request
 	if len(req.FormValue("username")) <= 1 {
 		res.WriteHeader(400)
