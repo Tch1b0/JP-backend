@@ -3,6 +3,7 @@ FROM golang:latest
 WORKDIR /app
 
 COPY ./main.go ./main.go
+COPY ./account.json ./account.json
 COPY ./go.mod ./go.mod
 COPY ./go.sum ./go.sum
 COPY ./pkg ./pkg
