@@ -23,7 +23,7 @@ func CreateFromJsonFile(path string) (Account, error) {
 	}
 
 	err = json.Unmarshal([]byte(content), &account)
-
+	fmt.Println(account)
 	account.Password, _ = HashPassword(account.Password)
 
 	return account, err
@@ -31,7 +31,6 @@ func CreateFromJsonFile(path string) (Account, error) {
 
 func HashPassword(password string) (string, error){
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
-	fmt.Println(err)
 	return string(bytes), err
 }
 
