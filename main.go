@@ -230,8 +230,6 @@ func verify(res http.ResponseWriter, req *http.Request) {
 		return
 	} else {
 		fmt.Fprint(res, "Wrong password or username")
-		fmt.Println(account.Password)
-		fmt.Println(req.FormValue("password"), req.FormValue("username"))
 		return
 	}
 }

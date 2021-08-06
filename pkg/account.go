@@ -2,7 +2,6 @@ package pkg
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -23,7 +22,6 @@ func CreateFromJsonFile(path string) (Account, error) {
 	}
 
 	err = json.Unmarshal([]byte(content), &account)
-	fmt.Println(account)
 	account.Password, _ = HashPassword(account.Password)
 
 	return account, err
