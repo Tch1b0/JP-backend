@@ -225,7 +225,7 @@ func verify(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	if pkg.CheckPassword(req.FormValue("password"), account.Password) && req.FormValue("username") == account.Username{
+	if pkg.IsOwnerFromReq(req, account){
 		fmt.Fprint(res, "Logged in")
 		return
 	} else {

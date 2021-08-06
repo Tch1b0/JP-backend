@@ -2,6 +2,7 @@ package pkg
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -30,6 +31,7 @@ func CreateFromJsonFile(path string) (Account, error) {
 
 func HashPassword(password string) (string, error){
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	fmt.Println(err)
 	return string(bytes), err
 }
 
