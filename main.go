@@ -59,12 +59,14 @@ func main() {
 
 // Respond with the variable 'posts'
 func getAllPosts(res http.ResponseWriter, req *http.Request) {
+	res.Header().Set("Access-Control-Allow-Origin", "*")
 	res.WriteHeader(200)
 	json.NewEncoder(res).Encode(posts)
 }
 
 // Respond with the count of the posts
 func getPostCount(res http.ResponseWriter, req *http.Request) {
+	res.Header().Set("Access-Control-Allow-Origin", "*")
 	res.WriteHeader(200)
 	json.NewEncoder(res).Encode(
 		map[string]int{
@@ -74,6 +76,7 @@ func getPostCount(res http.ResponseWriter, req *http.Request) {
 
 // Respond with a certain post, by its name
 func getPostByName(res http.ResponseWriter, req *http.Request) {
+	res.Header().Set("Access-Control-Allow-Origin", "*")
 	title := mux.Vars(req)["title"]
 	for _, post := range posts {
 		if post.Title == title {
@@ -96,6 +99,7 @@ func getPostByName(res http.ResponseWriter, req *http.Request) {
 
 // Get all post-titles
 func getPostTitles(res http.ResponseWriter, req *http.Request) {
+	res.Header().Set("Access-Control-Allow-Origin", "*")
 	var titles []string
 
 	for _, post := range posts {
@@ -107,9 +111,11 @@ func getPostTitles(res http.ResponseWriter, req *http.Request) {
 }
 
 func getPostLogo(res http.ResponseWriter, req *http.Request) {
+	res.Header().Set("Access-Control-Allow-Origin", "*")
 	getImage(res, req, "Logo")
 }
 func getPostBanner(res http.ResponseWriter, req *http.Request) {
+	res.Header().Set("Access-Control-Allow-Origin", "*")
 	getImage(res, req, "Banner")
 }
 func getImage(res http.ResponseWriter, req *http.Request, file string) {
@@ -137,6 +143,7 @@ func getImage(res http.ResponseWriter, req *http.Request, file string) {
 }
 
 func getPostByIndex(res http.ResponseWriter, req *http.Request) {
+	res.Header().Set("Access-Control-Allow-Origin", "*")
 	indexString := mux.Vars(req)["index"]
 	index, _ := strconv.Atoi(indexString)
 
