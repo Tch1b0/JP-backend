@@ -227,7 +227,9 @@ func deletePost(res http.ResponseWriter, req *http.Request, p pkg.Post) {
 
 func verify(res http.ResponseWriter, req *http.Request) {
 	req.ParseMultipartForm(0)
-	if req.FormValue("password") == "" || req.FormValue("username") == "" {
+	_, _, ok := req.BasicAuth()
+
+	if !ok {
 		res.WriteHeader(401)
 		fmt.Fprint(res, "No password or username")
 		return
