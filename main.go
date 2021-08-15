@@ -80,8 +80,6 @@ func getPostByName(res http.ResponseWriter, req *http.Request) {
 	title := mux.Vars(req)["title"]
 	for _, post := range posts {
 		if post.Title == title {
-			fmt.Printf(req.Method)
-			fmt.Println(pkg.IsOwnerFromReq(req, account))
 			if req.Method == "DELETE" && pkg.IsOwnerFromReq(req, account) {
 				deletePost(res, req, post)
 				return
@@ -230,6 +228,7 @@ func deletePost(res http.ResponseWriter, req *http.Request, p pkg.Post) {
 func verify(res http.ResponseWriter, req *http.Request) {
 	req.ParseMultipartForm(0)
 	if req.FormValue("password") == "" || req.FormValue("username") == "" {
+		res.WriteHeader(401)
 		fmt.Fprint(res, "No password or username")
 		return
 	}
@@ -238,6 +237,7 @@ func verify(res http.ResponseWriter, req *http.Request) {
 		fmt.Fprint(res, "Logged in")
 		return
 	} else {
+		res.WriteHeader(401)
 		fmt.Fprint(res, "Wrong password or username")
 		return
 	}

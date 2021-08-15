@@ -37,8 +37,11 @@ func CheckPassword(password, hash string) bool {
 	return err == nil
 }
 func IsOwnerFromReq(req *http.Request, account Account) bool {
-	username := req.FormValue("username")
-	password := req.FormValue("password")
+	username, password, ok := req.BasicAuth()
+
+	if !ok {
+		return false
+	}
 
 	return username == account.Username && CheckPassword(password, account.Password)
 }
