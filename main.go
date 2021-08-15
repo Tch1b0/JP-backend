@@ -80,6 +80,8 @@ func getPostByName(res http.ResponseWriter, req *http.Request) {
 	title := mux.Vars(req)["title"]
 	for _, post := range posts {
 		if post.Title == title {
+			fmt.Printf(req.Method)
+			fmt.Println(pkg.IsOwnerFromReq(req, account))
 			if req.Method == "DELETE" && pkg.IsOwnerFromReq(req, account) {
 				deletePost(res, req, post)
 				return
