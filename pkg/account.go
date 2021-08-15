@@ -2,6 +2,7 @@ package pkg
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -38,7 +39,8 @@ func CheckPassword(password, hash string) bool {
 }
 func IsOwnerFromReq(req *http.Request, account Account) bool {
 	username, password, ok := req.BasicAuth()
-
+	fmt.Println(username)
+	fmt.Println(username)
 	if !ok {
 		return false
 	}
