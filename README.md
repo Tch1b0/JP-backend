@@ -2,6 +2,8 @@
 This is the backend for my website.
 Here I upload my posts
 
+**Outdated!** new webiste is [right here](https://github.com/Tch1b0/JP-nuxt)
+
 ## Upload
 Form to upload Project:
 ```json
